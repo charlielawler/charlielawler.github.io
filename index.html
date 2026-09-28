@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Charlie Lawler | GIS Portfolio</title>
+
+    <meta name="description"
+          content="Charlie Lawler - GIS and environmental mapping portfolio. ArcGIS Pro, spatial analysis, SQL, GIS automation and environmental GIS.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            color: #24302b;
+            background: #f6f8f6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid #dce4df;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #173f32;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #287a58;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #e8f1eb 0%,
+                    #f6f8f6 55%,
+                    #e1eee6 100%
+                );
+        }
+
+        .hero-container {
+            max-width: 1150px;
+            width: 100%;
+            margin: auto;
+            padding: 90px 25px;
+        }
+
+        .hero-label {
+            color: #287a58;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.8rem);
+            line-height: 0.98;
+            color: #173f32;
+            max-width: 850px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #287a58;
+        }
+
+        .hero-description {
+            max-width: 720px;
+            font-size: 1.25rem;
+            color: #50605a;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 23px;
+            border-radius: 7px;
+            font-weight: 700;
+            border: 2px solid #287a58;
+            transition: 0.2s;
+        }
+
+        .button-primary {
+            background: #287a58;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: #1e6045;
+            border-color: #1e6045;
+        }
+
+        .button-secondary {
+            color: #287a58;
+            background: transparent;
+        }
+
+        .button-secondary:hover {
+            background: #e2eee7;
+        }
+
+        /* General sections */
+
+        section {
+            padding: 90px 25px;
+        }
+
+        .section-container {
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        .section-heading {
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            font-size: 2.4rem;
+            color: #173f32;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: #64716b;
+            max-width: 700px;
+        }
+
+        /* About */
+
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .about-text p {
+            margin-bottom: 18px;
+            color: #53615b;
+            font-size: 1.05rem;
+        }
+
+        .skills-box {
+            background: #f0f5f1;
+            border: 1px solid #dce7df;
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .skills-box h3 {
+            color: #173f32;
+            margin-bottom: 20px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .skill {
+            background: white;
+            border: 1px solid #d5e0d9;
+            border-radius: 5px;
+            padding: 7px 11px;
+            font-size: 0.9rem;
+        }
+
+        /* Projects */
+
+        .projects {
+            background: #f6f8f6;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #dce4df;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(31, 61, 47, 0.10);
+        }
+
+        .project-top {
+            height: 8px;
+            background: #287a58;
+        }
+
+        .project-content {
+            padding: 28px;
+        }
+
+        .project-number {
+            color: #287a58;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .project-card h3 {
+            color: #173f32;
+            margin: 10px 0 12px;
+            font-size: 1.35rem;
+        }
+
+        .project-card p {
+            color: #65716c;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .tag {
+            background: #edf4ef;
+            color: #287a58;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        /* Technical skills */
+
+        .technical {
+            background: white;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .tech-card {
+            padding: 25px;
+            border: 1px solid #dce4df;
+            border-radius: 10px;
+            background: #fafcfb;
+        }
+
+        .tech-card h3 {
+            color: #173f32;
+            margin-bottom: 12px;
+        }
+
+        .tech-card p {
+            color: #66736d;
+            font-size: 0.9rem;
+        }
+
+        /* Contact */
+
+        .contact {
+            background: #173f32;
+            color: white;
+        }
+
+        .contact .section-heading h2 {
+            color: white;
+        }
+
+        .contact .section-heading p {
+            color: #c8d8d0;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-button {
+            display: inline-block;
+            border: 1px solid #7fa996;
+            padding: 12px 20px;
+            border-radius: 6px;
+            color: white;
+        }
+
+        .contact-button:hover {
+            background: #287a58;
+            border-color: #287a58;
+        }
+
+        /* Footer */
+
+        footer {
+            background: #102c23;
+            color: #aebdb6;
+            text-align: center;
+            padding: 25px;
+            font-size: 0.85rem;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                gap: 14px;
+                font-size: 0.85rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .nav-container {
+                padding: 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 65px 20px;
+            }
+
+            .hero-container {
+                padding: 70px 20px;
+            }
+
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+        <div class="nav-container">
+
+            <a href="#" class="logo">
+                Charlie Lawler
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- Hero -->
+
+    <header class="hero">
+
+        <div class="hero-container">
+
+            <div class="hero-label">
+                GIS & Environmental Mapping
+            </div>
+
+            <h1>
+                Charlie<br>
+                <span>Lawler.</span>
+            </h1>
+
+            <p class="hero-description">
+                GIS professional specialising in environmental mapping,
+                spatial analysis and cartographic production, with a growing
+                focus on GIS automation, SQL and ArcGIS Enterprise.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#projects" class="button button-primary">
+                    View my projects
+                </a>
+
+                <a href="#contact" class="button button-secondary">
+                    Get in touch
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- About -->
+
+    <section class="about" id="about">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+                <h2>About me</h2>
+                <p>
+                    A practical approach to environmental GIS and spatial
+                    data.
+                </p>
+            </div>
+
+            <div class="about-grid">
+
+                <div class="about-text">
+
+                    <p>
+                        I am a GIS professional with experience applying
+                        geographic information systems to environmental
+                        projects and habitat mapping.
+                    </p>
+
+                    <p>
+                        My work involves producing accurate spatial data,
+                        analysing geographic information and creating
+                        professional maps and outputs for environmental
+                        reporting.
+                    </p>
+
+                    <p>
+                        Alongside my professional GIS work, I am developing
+                        my technical skills in SQL, databases, Python,
+                        GIS automation and ArcGIS Enterprise.
+                    </p>
+
+                    <p>
+                        This portfolio documents selected projects,
+                        technical experiments and examples of my GIS
+                        development.
+                    </p>
+
+                </div>
+
+                <div class="skills-box">
+
+                    <h3>Core skills</h3>
+
+                    <div class="skills">
+
+                        <span class="skill">ArcGIS Pro</span>
+                        <span class="skill">ArcGIS Enterprise</span>
+                        <span class="skill">Spatial Analysis</span>
+                        <span class="skill">Environmental GIS</span>
+                        <span class="skill">Habitat Mapping</span>
+                        <span class="skill">Cartography</span>
+                        <span class="skill">SQL</span>
+                        <span class="skill">Python</span>
+                        <span class="skill">Arcade</span>
+                        <span class="skill">Spatial Databases</span>
+                        <span class="skill">GIS Automation</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Projects -->
+
+    <section class="projects" id="projects">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <h2>Projects</h2>
+
+                <p>
+                    A selection of GIS projects demonstrating spatial
+                    analysis, environmental mapping, automation and
+                    technical development.
+                </p>
+
+            </div>
+
+
+            <div class="project-grid">
+
+
+                <article class="project-card">
+
+                    <div class="project-top"></div>
+
+                    <div class="project-content">
+
+                        <div class="project-number">
+                            PROJECT 01
+                        </div>
+
+                        <h3>Environmental Habitat Mapping</h3>
+
+                        <p>
+                            Mapping and classification of habitats using
+                            spatial data and GIS workflows, with a focus
+                            on producing accurate outputs for environmental
+                            reporting.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">ArcGIS Pro</span>
+                            <span class="tag">UKHab</span>
+                            <span class="tag">Cartography</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="project-card">
+
+                    <div class="project-top"></div>
+
+                    <div class="project-content">
+
+                        <div class="project-number">
+                            PROJECT 02
+                        </div>
+
+                        <h3>GIS Automation</h3>
+
+                        <p>
+                            Developing automated GIS workflows to reduce
+                            repetitive processing and improve consistency
+                            across mapping and reporting tasks.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">ArcPy</span>
+                            <span class="tag">ArcGIS Pro</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="project-card">
+
+                    <div class="project-top"></div>
+
+                    <div class="project-content">
+
+                        <div class="project-number">
+                            PROJECT 03
+                        </div>
+
+                        <h3>Spatial Databases & SQL</h3>
+
+                        <p>
+                            Exploring relational database design and SQL
+                            techniques for managing and querying spatial
+                            datasets.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">SQL</span>
+                            <span class="tag">Databases</span>
+                            <span class="tag">GIS</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="project-card">
+
+                    <div class="project-top"></div>
+
+                    <div class="project-content">
+
+                        <div class="project-number">
+                            PROJECT 04
+                        </div>
+
+                        <h3>ArcGIS Enterprise</h3>
+
+                        <p>
+                            A technical development project exploring
+                            ArcGIS Enterprise architecture, services,
+                            data management and web GIS workflows.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Enterprise</span>
+                            <span class="tag">Web GIS</span>
+                            <span class="tag">Databases</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="project-card">
+
+                    <div class="project-top"></div>
+
+                    <div class="project-content">
+
+                        <div class="project-number">
+                            PROJECT 05
+                        </div>
+
+                        <h3>GIS Cartography</h3>
+
+                        <p>
+                            Examples of professional map production,
+                            labelling, symbology and layout design for
+                            environmental reporting.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Cartography</span>
+                            <span class="tag">ArcGIS Pro</span>
+                            <span class="tag">Arcade</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <article class="project-card">
+
+                    <div class="project-top"></div>
+
+                    <div class="project-content">
+
+                        <div class="project-number">
+                            PROJECT 06
+                        </div>
+
+                        <h3>Spatial Analysis</h3>
+
+                        <p>
+                            Independent GIS analysis projects exploring
+                            spatial relationships, environmental datasets
+                            and geographic patterns.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Spatial Analysis</span>
+                            <span class="tag">ArcGIS</span>
+                            <span class="tag">Data</span>
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Technical skills -->
+
+    <section class="technical" id="skills">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <h2>Technical skills</h2>
+
+                <p>
+                    Tools and technologies I use or am actively developing.
+                </p>
+
+            </div>
+
+
+            <div class="tech-grid">
+
+                <div class="tech-card">
+
+                    <h3>GIS</h3>
+
+                    <p>
+                        ArcGIS Pro, ArcGIS Enterprise, spatial analysis,
+                        geoprocessing, cartography and environmental GIS.
+                    </p>
+
+                </div>
+
+
+                <div class="tech-card">
+
+                    <h3>Data</h3>
+
+                    <p>
+                        SQL, relational databases, spatial datasets,
+                        data management and quality control.
+                    </p>
+
+                </div>
+
+
+                <div class="tech-card">
+
+                    <h3>Programming</h3>
+
+                    <p>
+                        Python, ArcPy, Arcade and scripting for GIS
+                        automation and workflow development.
+                    </p>
+
+                </div>
+
+
+                <div class="tech-card">
+
+                    <h3>Mapping</h3>
+
+                    <p>
+                        Professional cartographic design, labelling,
+                        symbology, layouts and report-ready outputs.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+
+    <section class="contact" id="contact">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <h2>Let's connect</h2>
+
+                <p>
+                    Interested in GIS, environmental data, spatial
+                    analysis or technical GIS development?
+                </p>
+
+            </div>
+
+
+            <div class="contact-links">
+
+                <a
+                    class="contact-button"
+                    href="https://github.com/charlielawler"
+                    target="_blank"
+                >
+                    GitHub
+                </a>
+
+                <!-- Add your LinkedIn URL here later -->
+
+                <a
+                    class="contact-button"
+                    href="mailto:your-email@example.com"
+                >
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Charlie Lawler · GIS & Environmental Mapping
+        </p>
+
+    </footer>
+
+</body>
+</html>
